@@ -1,0 +1,16 @@
+<h1> Blog List</h1>
+
+Total post count {{ count }} <br/>
+
+<table border="1">
+{% for d in data %}
+    <tr>
+        <td>{{ d.title }}</td>
+        <td>{{ d.description }}</td>
+        <td>{{ d.author }}</td>
+        <td>{{ d.created }}</td>
+        <td>{{ d.modified }}</td>
+    </tr>
+{% endfor %}
+
+</table>
