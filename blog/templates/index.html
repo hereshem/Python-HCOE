@@ -1,11 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    This is index page
+{% endblock %}
+
+{% block content %}
 <h1> Blog List</h1>
 
 Total post count {{ count }} <br/>
 
 <table border="1">
+<tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Author</th>
+    <th>Created</th>
+    <th>Modified</th>
+</tr>
 {% for d in data %}
     <tr>
-        <td>{{ d.title }}</td>
+        <td><a href="/blog/{{ d.id }}">{{ d.title }}</a></td>
         <td>{{ d.description }}</td>
         <td>{{ d.author }}</td>
         <td>{{ d.created }}</td>
@@ -14,3 +28,6 @@ Total post count {{ count }} <br/>
 {% endfor %}
 
 </table>
+
+
+{% endblock %}
