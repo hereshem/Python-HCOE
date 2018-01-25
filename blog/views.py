@@ -16,8 +16,11 @@ def index(request):
     return render(request, 'index.html', dictionary)
 
 def detail(request, id):
-    data = Blog.objects.get(pk=id)
-    dictionary = {"data": data}
+    try:
+        data = Blog.objects.get(pk=id)
+        dictionary = {"data": data}
+    except Exception:
+        return render(request, "404.html",{})
     return render(request, 'detail.html', dictionary)
 
 def sendJson(request):
