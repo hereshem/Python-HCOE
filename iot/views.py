@@ -31,11 +31,11 @@ def home(request):
         if 'light' in request.GET:
             data.light = request.GET['light'] == 'ON'
             to_save = True
-            # GPIO.output(PIN_LIGHT, GPIO.HIGH if data.tv else GPIO.LOW)
+            # GPIO.output(PIN_LIGHT, GPIO.HIGH if data.light else GPIO.LOW)
         if 'fan' in request.GET:
             data.fan = request.GET['fan'] == 'ON'
             to_save = True
-            # GPIO.output(PIN_FAN, GPIO.HIGH if data.tv else GPIO.LOW)
+            # GPIO.output(PIN_FAN, GPIO.HIGH if data.fan else GPIO.LOW)
 
         if to_save:
             data.modified = datetime.now()
