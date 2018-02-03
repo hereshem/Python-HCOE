@@ -1,5 +1,3 @@
-from django.contrib.sessions import serializers
-from django.db.migrations import serializer
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.core import serializers
@@ -24,4 +22,8 @@ def detail(request, id):
     return render(request, 'detail.html', dictionary)
 
 def sendJson(request):
+    return HttpResponse(serializers.serialize("json", Blog.objects.all()))
+
+def getPostTest(request):
+    return HttpResponse(request.GET.lists())
     return HttpResponse(serializers.serialize("json", Blog.objects.all()))

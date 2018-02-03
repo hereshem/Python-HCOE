@@ -16,12 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from blog.views import index, detail, sendJson
+from blog.views import index, detail, sendJson, getPostTest
+
+from iot.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     # path('test/', index),
-    # path('test/<int:id>', detail)
-    # path('api/', sendJson)
+    # path('test/<int:id>', detail),
+    # path('api/', sendJson),
+    path('url/', getPostTest),
+    path('iot/', home),
 ]
