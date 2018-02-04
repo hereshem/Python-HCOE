@@ -28,5 +28,5 @@ urlpatterns = [
 
     path('url/', getPostTest),
     path('iot/', home),
-    path('api/', homeapi()),
+    path('api/', homeapi),
 ]
