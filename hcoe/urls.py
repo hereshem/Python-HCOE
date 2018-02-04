@@ -18,14 +18,15 @@ from django.urls import path, include
 
 from blog.views import index, detail, sendJson, getPostTest
 
-from iot.views import home
+from iot.views import home, homeapi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     # path('test/', index),
     # path('test/<int:id>', detail),
-    # path('api/', sendJson),
+
     path('url/', getPostTest),
     path('iot/', home),
+    path('api/', homeapi()),
 ]

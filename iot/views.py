@@ -1,5 +1,7 @@
 from datetime import datetime
 from django.shortcuts import render
+from django.http.response import HttpResponse
+from django.core import serializers
 
 # Create your views here.
 from .models import IOT
@@ -44,3 +46,28 @@ def home(request):
         return render(request, 'home.html', {"data": data})
     else:
         return render(request, '404.html',{})
+
+def homeapi(request):
+    if IOT.objects.count() > 0:
+        data = IOT.objects.last()
+        to_save = False
+        if 'tv' in request.GET:
+            data.tv = request.GET['tv'] == 'ON'
+            to_save = True
+            #GPIO.output(PIN_TV, GPIO.HIGH if data.tv else GPIO.LOW)
+        if 'light' in request.GET:
+            data.light = request.GET['light'] == 'ON'
+            to_save = True
+            # GPIO.output(PIN_LIGHT, GPIO.HIGH if data.light else GPIO.LOW)
+        if 'fan' in request.GET:
+            data.fan = request.GET['fan'] == 'ON'
+            to_save = True
+            # GPIO.output(PIN_FAN, GPIO.HIGH if data.fan else GPIO.LOW)
+
+        if to_save:
+            data.modified = datetime.now()
+            data.save()
+
+        return HttpResponse(serializers.serialize("json", data))
+    else:
+        return HttpResponse(serializers.serialize("json", {"error":"No data"}))
